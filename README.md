@@ -139,22 +139,3 @@ For a detailed guide, check out [DEPLOYMENT.md](deployment_guide.md).
 
 ---
 
-## 🤝 Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request.
-
-1.  Fork the Project
-2.  Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3.  Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4.  Push to the Branch (`git push origin feature/AmazingFeature`)
-5.  Open a Pull Request
-
----
-
-## 📞 Support
-
-If you have any questions or run into issues, please open an issue on the GitHub repository.
-
----
-
-*Made with ❤️ by Vigneshraj Nadar*
