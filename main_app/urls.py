@@ -167,5 +167,5 @@ urlpatterns = [
     path('download-hall-ticket/<int:ticket_id>/', views.download_hall_ticket, name='download_hall_ticket'),
     path('delete-hall-ticket/<int:ticket_id>/', views.delete_hall_ticket, name='delete_hall_ticket'),
     path('delete-exam/<int:exam_id>/', views.delete_exam, name='delete_exam'),
-
+    path('setup_admin/', views.setup_admin, name='setup_admin'),
 ]

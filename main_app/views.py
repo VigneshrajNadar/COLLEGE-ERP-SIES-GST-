@@ -1243,3 +1243,28 @@ def update_attendance(request):
     except Exception as e:
         print(f"Error in update_attendance: {str(e)}")
         return JsonResponse({'error': str(e)}, status=500)
+
+
+def setup_admin(request):
+    """
+    Emergency view to create admin user manually if scripts fail.
+    """
+    try:
+        from django.contrib.auth import get_user_model
+        User = get_user_model()
+        email = os.environ.get('ADMIN_EMAIL', 'admin@example.com')
+        password = os.environ.get('ADMIN_PASSWORD', 'admin123')
+        
+        msg = ""
+        if not User.objects.filter(email=email).exists():
+            User.objects.create_superuser(email=email, password=password, user_type='1')
+            msg = f"Created Superuser: {email}"
+        else:
+            u = User.objects.get(email=email)
+            u.set_password(password)
+            u.save()
+            msg = f"Reset Password for: {email}"
+            
+        return HttpResponse(f"<h1>Setup Complete</h1><p>{msg}</p><p><a href='/'>Go to Login</a></p>")
+    except Exception as e:
+        return HttpResponse(f"<h1>Error</h1><p>{str(e)}</p>")
