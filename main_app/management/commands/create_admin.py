@@ -19,7 +19,11 @@ class Command(BaseCommand):
             User.objects.create_superuser(email=email, password=password, user_type='1')
             self.stdout.write(self.style.SUCCESS(f'Superuser {email} created successfully!'))
         else:
-            self.stdout.write(self.style.WARNING(f'Superuser {email} already exists.'))
+            self.stdout.write(self.style.WARNING(f'Superuser {email} already exists. Updating password...'))
+            u = User.objects.get(email=email)
+            u.set_password(password)
+            u.save()
+            self.stdout.write(self.style.SUCCESS(f'Password for {email} updated.'))
 
         # 2. Create Demo Course & Session (Required for Staff/Student)
         course, _ = Course.objects.get_or_create(name="Computer Engineering")

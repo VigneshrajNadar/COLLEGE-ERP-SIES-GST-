@@ -75,16 +75,18 @@ def doLogin(request, **kwargs):
             # Debug why it failed
             from django.contrib.auth import get_user_model
             User = get_user_model()
-            if not User.objects.filter(email=email).exists():
+            if not User.objects.filter(email__iexact=email).exists():
                 print(f"DEBUG: Login failed - User with email {email} does not exist.")
+                messages.error(request, f"User with email {email} does not exist.")
             else:
-                u = User.objects.get(email=email)
+                u = User.objects.get(email__iexact=email)
                 if not u.check_password(password):
                     print(f"DEBUG: Login failed - Password incorrect for {email}.")
+                    messages.error(request, f"Password incorrect for {email}.")
                 else:
                     print(f"DEBUG: Login failed - Unknown reason for {email}.")
+                    messages.error(request, "Login failed - Unknown reason")
             
-            messages.error(request, "Invalid details")
             return redirect("/")
 
 
