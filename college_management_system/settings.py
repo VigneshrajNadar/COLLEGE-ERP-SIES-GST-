@@ -18,9 +18,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# reCAPTCHA settings
-RECAPTCHA_SITE_KEY = '6LdPjAcrAAAAAMNBYRB17sJZom2JN_U7l1C2DG2k'
-RECAPTCHA_SECRET_KEY = '6LdPjAcrAAAAAKmpkdDHmIwqYH2UOvPTWgSt2hnc'
+
 
 
 # Quick-start development settings - unsuitable for production

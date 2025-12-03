@@ -20,21 +20,8 @@
     <link rel="stylesheet" href="{% static 'dist/css/adminlte.min.css' %}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-    <!-- Google Recaptcha -->
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-    <style>
-        .g-recaptcha {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        .recaptcha-error {
-            color: red;
-            text-align: center;
-            margin-bottom: 10px;
-            display: none;
-        }
-    </style>
+
+
 </head>
 
 <body class="hold-transition login-page" style="background-image: linear-gradient(to right top, #051937, #044269, #00719a, #00a4c6, #12d9eb);">
@@ -62,7 +49,7 @@
                     {% endfor %}
                 </div>
                 {% endif %}
-                <form action="doLogin/" method="post" onsubmit="return validateForm()">
+                <form action="doLogin/" method="post">
                     {% csrf_token %}
                     <div class="input-group mb-3">
                         <input required type="email" name='email' class="form-control" placeholder="Email">
@@ -80,8 +67,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="recaptcha-error" class="recaptcha-error">Please complete the reCAPTCHA verification</div>
-                    <div class="g-recaptcha" data-sitekey="6LdPjAcrAAAAAMNBYRB17sJZom2JN_U7l1C2DG2k" data-callback="enableSubmit"></div>
+
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -119,27 +105,7 @@
     <!-- AdminLTE App -->
     <script src="{% static 'dist/js/adminlte.min.js' %}"></script>
     <script>
-        function validateForm() {
-            var response = grecaptcha.getResponse();
-            if (response.length === 0) {
-                document.getElementById('recaptcha-error').style.display = 'block';
-                return false;
-            }
-            document.getElementById('recaptcha-error').style.display = 'none';
-            return true;
-        }
 
-        function enableSubmit(token) {
-            document.getElementById('recaptcha-error').style.display = 'none';
-        }
-
-        // Handle reCAPTCHA errors
-        window.addEventListener('load', function() {
-            if (typeof grecaptcha === 'undefined') {
-                document.getElementById('recaptcha-error').textContent = 'reCAPTCHA failed to load. Please refresh the page.';
-                document.getElementById('recaptcha-error').style.display = 'block';
-            }
-        });
     </script>
 </body>
 
